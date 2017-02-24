@@ -1,5 +1,8 @@
 # OperationResult
-Rust-style error handling for C#
+__Rust-style error handling for C#__
+
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/gnaeus/OperationResult/master/LICENSE)
+[![NuGet version](https://img.shields.io/nuget/v/CSharp.OperationResult.svg)](https://www.nuget.org/packages/CSharp.OperationResult)
 
 ```cs
 using OperationResult;

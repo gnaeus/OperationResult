@@ -8,7 +8,7 @@
     <owners>gnaeus</owners>
     <licenseUrl>https://github.com/gnaeus/OperationResult/LICENSE</licenseUrl>
     <projectUrl>https://github.com/gnaeus/OperationResult</projectUrl>
-    <iconUrl>https://github.com/gnaeus/OperationResult/OperationResult/icon_48x48.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/gnaeus/OperationResult/master/OperationResult/icon_48x48.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Common types and helpers for represent result of some operation.</description>
     <releaseNotes>First release.</releaseNotes>
