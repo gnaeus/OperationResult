@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OperationResult</RootNamespace>
-    <AssemblyName>OperationResult</AssemblyName>
+    <AssemblyName>CSharp.OperationResult</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,6 +41,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tags\ErrorTag.cs" />
     <Compile Include="Tags\SuccessTag.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CSharp.OperationResult.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon_48x48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

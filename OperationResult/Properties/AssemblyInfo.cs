@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("OperationResult")]
+[assembly: AssemblyTitle("CSharp.OperationResult")]
 [assembly: AssemblyDescription("Functional style error handling for C#")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("OperationResult")]
+[assembly: AssemblyProduct("CSharp.OperationResult")]
 [assembly: AssemblyCopyright("Copyright © Dmitry Panyushkin 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
