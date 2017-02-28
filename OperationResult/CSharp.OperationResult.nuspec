@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>CSharp.OperationResult</id>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <title>Rust-style error handling for C#</title>
     <authors>Dmitry Panyushkin</authors>
     <owners>gnaeus</owners>
