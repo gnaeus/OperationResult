@@ -34,20 +34,50 @@ public void Method()
 ```
 
 ---
+* [__`Result<TResult>`__](#operation-result-result)
+
 * [__`Result<TResult, TError>`__](#operation-result-result-error)
 
-* [__`Result<TResult>`__](#operation-result-result)
+* [__`Result<TResult, TError1, TError2, ...>`__](#operation-result-result-multiple-errors)
+
+* [__`Status`__](#operation-result-status)
 
 * [__`Status<TError>`__](#operation-result-status-error)
 
-* [__`Status`__](#operation-result-status)
+* [__`Status<TError, TError2, ...>`__](#operation-result-status-multiple-errors)
 
 * [__`Helpers`__](#operation-result-helpers)
   - `Ok<>()`
   - `Error<>()`
   - `Ok<TResult>(TResult result)`
   - `Error<TError>(TError error)`
-  
+
+### <a name="operation-result-result"></a>`Result<TResult>`
+Result of some method when there is no `TError` type defined
+```cs
+public struct Result<TResult>
+{
+    public readonly TResult Value;
+
+    public bool IsError { get; }
+    public bool IsSuccsess { get; }
+
+    public static implicit operator bool(Result<TResult> result);
+    public static implicit operator Result<TResult>(TResult result);
+}
+```
+
+Example
+```cs
+public Result<uint> Square(uint argument)
+{
+    if (argument >= UInt16.MaxValue)
+    {
+        return Error();
+    }
+    return Ok(argument * argument);
+}
+```
 
 ### <a name="operation-result-result-error"></a>`Result<TResult, TError>`
 Either Result of some method or Error from this method
@@ -85,30 +115,78 @@ public async Task<Result<string, HttpStatusCode>> DownloadPage(string url)
 }
 ```
 
-### <a name="operation-result-result"></a>`Result<TResult>`
-Result of some method when there is no `TError` type defined
+### <a name="operation-result-result-multiple-errors"></a>`Result<TResult, TError1, TError2, ...>`
+Either Result of some method or multiple Errors from this method
 ```cs
-public struct Result<TResult>
+public struct Result<TResult, TError1, TError2, ...>
 {
+    public readonly TError Error;
     public readonly TResult Value;
 
     public bool IsError { get; }
     public bool IsSuccsess { get; }
 
-    public static implicit operator bool(Result<TResult> result);
-    public static implicit operator Result<TResult>(TResult result);
+    public static implicit operator bool(Result<TResult, TError> result);
+    public static implicit operator Result<TResult, TError>(TResult result);
 }
 ```
 
 Example
 ```cs
-public Result<uint> Square(uint argument)
+public Result<int, InnerError> Inner()
 {
-    if (argument >= UInt16.MaxValue)
+    return Error(new InnerError());
+}
+
+public Result<int, OuterError, InnerError> Outer()
+{
+    var result = Inner();
+    if (!result)
     {
-        return Error();
+        return Error(result.Error);
     }
-    return argument * argument;
+    return Error(new OuterError());
+}
+
+public void Method()
+{
+    var result = Outer();
+    if (result)
+    {
+        // ...
+    }
+    else if (result.HasError<InnerError>())
+    {
+        Console.WriteLine("{0}", result.GetError<InnerError>());
+    }
+    else if (result.HasError<OuterError>())
+    {
+        Console.WriteLine("{0}", result.GetError<OuterError>());
+    }
+}
+```
+
+### <a name="operation-result-status"></a>`Status`
+Status of some operation without result when there is no `TError` type defined
+```cs
+public struct Status
+{
+    public bool IsError { get; }
+    public bool IsSuccsess { get; }
+
+    public static implicit operator bool(Status status);
+}
+```
+
+Example
+```cs
+public Status IsOdd(int value)
+{
+    if (value % 2 == 1)
+    {
+        return Ok();
+    }
+    return Error();
 }
 ```
 
@@ -142,36 +220,51 @@ public Status<string> Validate(string input)
 }
 ```
 
-### <a name="operation-result-status"></a>`Status`
-Status of some operation without result when there is no `TError` type defined
+### <a name="operation-result-status-multiple-errors"></a>`Status<TError1, TError2, ...>`
+Status of some operation without result but with multiple Errors from this method
 ```cs
-public struct Status
+public struct Status<TError1, TError2, ...>
 {
-    public bool IsError { get; }
-    public bool IsSuccsess { get; }
+    public readonly object Error;
 
-    public static implicit operator bool(Status status);
+    public bool IsError { get; }
+    public bool IsSuccess { get; }
+
+    public TError GetError<TError>();
+    public bool HasError<TError>();
+
+    public static implicit operator bool(Status<TError1, TError2> status);
 }
 ```
 
 Example
 ```cs
-public Status IsOdd(int value)
+public Status<InnerError> Inner()
 {
-    if (value % 2 == 1)
+    return Error(new InnerError());
+}
+
+public Status<OuterError, InnerError> Outer()
+{
+    var result = Inner();
+    if (!result)
     {
-        return Ok();
+        return Error(result.Error);
     }
-    return Error();
+    return Error(new OuterError());
 }
 ```
+<hr>
 
 ### <a name="operation-result-helpers"></a>`Helpers`
 ```cs
-public static SuccessTag Ok();
-public static ErrorTag Error();
-public static SuccessTag<TResult> Ok<TResult>(TResult result);
-public static ErrorTag<TError> Error<TError>(TError error);
+public static class Helpers
+{
+    public static SuccessTag Ok();
+    public static ErrorTag Error();
+    public static SuccessTag<TResult> Ok<TResult>(TResult result);
+    public static ErrorTag<TError> Error<TError>(TError error);
+}
 ```
 
 ## Benchmarks
