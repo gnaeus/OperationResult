@@ -44,6 +44,21 @@ namespace OperationResult.Tests
             Assert.AreEqual(res3.Value, default(int));
         }
 
+        [TestMethod]
+        public void TestResultWithoutErrorImplicitToBool()
+        {
+            bool isSuccess;
+
+            isSuccess = GetResult(1);
+            Assert.IsTrue(isSuccess);
+
+            isSuccess = GetResult(2);
+            Assert.IsTrue(isSuccess);
+
+            isSuccess = GetResult(3);
+            Assert.IsFalse(isSuccess);
+        }
+
         private Result<int, string> GetResultOrError(int arg)
         {
             if (arg == 1)
@@ -83,6 +98,40 @@ namespace OperationResult.Tests
             Assert.IsTrue(res3.IsError);
             Assert.AreEqual(res3.Value, default(int));
             Assert.AreEqual(res3.Error, "Invalid Operation");
+        }
+
+        [TestMethod]
+        public void TestResultWithErrorImplicitToBool()
+        {
+            bool isSuccess;
+
+            isSuccess = GetResultOrError(1);
+            Assert.IsTrue(isSuccess);
+
+            isSuccess = GetResultOrError(2);
+            Assert.IsTrue(isSuccess);
+
+            isSuccess = GetResultOrError(3);
+            Assert.IsFalse(isSuccess);
+        }
+
+        [TestMethod]
+        public void TestResultWithErrorDeconstruction()
+        {
+            int result;
+            string error;
+
+            (result, error) = GetResultOrError(1);
+            Assert.AreEqual(result, 1);
+            Assert.IsNull(error);
+
+            (result, error) = GetResultOrError(2);
+            Assert.AreEqual(result, 2);
+            Assert.IsNull(error);
+
+            (result, error) = GetResultOrError(3);
+            Assert.AreEqual(result, default(int));
+            Assert.AreEqual(error, "Invalid Operation");
         }
 
         private Result<int, string, int> GetResultOrMultipleErrors(int arg)
@@ -140,6 +189,24 @@ namespace OperationResult.Tests
             Assert.AreEqual(res4.Value, default(int));
             Assert.AreEqual(res4.Error, "Invalid Operation");
             Assert.AreEqual(res4.GetError<string>(), "Invalid Operation");
+        }
+
+        [TestMethod]
+        public void TestResultWithMultipleErrorsImplicitToBool()
+        {
+            bool isSuccess;
+
+            isSuccess = GetResultOrMultipleErrors(1);
+            Assert.IsTrue(isSuccess);
+
+            isSuccess = GetResultOrMultipleErrors(2);
+            Assert.IsTrue(isSuccess);
+
+            isSuccess = GetResultOrMultipleErrors(3);
+            Assert.IsFalse(isSuccess);
+
+            isSuccess = GetResultOrMultipleErrors(4);
+            Assert.IsFalse(isSuccess);
         }
     }
 }

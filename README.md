@@ -90,6 +90,8 @@ public struct Result<TResult, TError>
     public bool IsError { get; }
     public bool IsSuccsess { get; }
 
+    public void Deconstruct(out TResult result, out TError error);
+
     public static implicit operator bool(Result<TResult, TError> result);
     public static implicit operator Result<TResult, TError>(TResult result);
 }

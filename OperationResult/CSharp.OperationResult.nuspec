@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>CSharp.OperationResult</id>
-    <version>0.1.1</version>
+    <version>0.1.2</version>
     <title>Rust-style error handling for C#</title>
     <authors>Dmitry Panyushkin</authors>
     <owners>gnaeus</owners>
@@ -11,7 +11,7 @@
     <iconUrl>https://raw.githubusercontent.com/gnaeus/OperationResult/master/OperationResult/icon_48x48.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Common types and helpers for represent result of some operation.</description>
-    <releaseNotes>First release.</releaseNotes>
+    <releaseNotes>C# 7 tuple deconstruction.</releaseNotes>
     <copyright>Copyright © Dmitry Panyushkin 2017</copyright>
     <tags>Rust Error Functional Result Status</tags>
   </metadata>

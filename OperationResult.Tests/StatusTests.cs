@@ -31,6 +31,18 @@ namespace OperationResult.Tests
             Assert.IsTrue(res2.IsError);
         }
 
+        [TestMethod]
+        public void TestStatusWithoutErrorImplicitToBool()
+        {
+            bool isSuccess;
+
+            isSuccess = GetStatus(1);
+            Assert.IsTrue(isSuccess);
+
+            isSuccess = GetStatus(2);
+            Assert.IsFalse(isSuccess);
+        }
+
         private Status<string> GetStatusOrError(int arg)
         {
             if (arg == 1)
@@ -56,6 +68,18 @@ namespace OperationResult.Tests
             Assert.IsFalse(res2.IsSuccess);
             Assert.IsTrue(res2.IsError);
             Assert.AreEqual(res2.Error, "Invalid Operation");
+        }
+
+        [TestMethod]
+        public void TestStatusWithErrorImplicitToBool()
+        {
+            bool isSuccess;
+
+            isSuccess = GetStatusOrError(1);
+            Assert.IsTrue(isSuccess);
+
+            isSuccess = GetStatusOrError(2);
+            Assert.IsFalse(isSuccess);
         }
 
         private Status<string, int> GetStatusOrMultipleErrors(int arg)
@@ -98,6 +122,21 @@ namespace OperationResult.Tests
             Assert.IsTrue(res3.HasError<string>());
             Assert.AreEqual(res3.Error, "Invalid Operation");
             Assert.AreEqual(res3.GetError<string>(), "Invalid Operation");
+        }
+
+        [TestMethod]
+        public void TestStatusWithMultipleErrorsImplicitToBool()
+        {
+            bool isSuccess;
+
+            isSuccess = GetStatusOrMultipleErrors(1);
+            Assert.IsTrue(isSuccess);
+
+            isSuccess = GetStatusOrMultipleErrors(2);
+            Assert.IsFalse(isSuccess);
+
+            isSuccess = GetStatusOrMultipleErrors(3);
+            Assert.IsFalse(isSuccess);
         }
     }
 }
