@@ -139,6 +139,12 @@ namespace OperationResult
             Error = error;
         }
 
+        public void Deconstruct(out TResult result, out object error)
+        {
+            result = Value;
+            error = Error;
+        }
+
         public static implicit operator bool(Result<TResult, TError1, TError2> result)
         {
             return result._isSuccess;
@@ -197,6 +203,12 @@ namespace OperationResult
             _isSuccess = false;
             Value = default(TResult);
             Error = error;
+        }
+
+        public void Deconstruct(out TResult result, out object error)
+        {
+            result = Value;
+            error = Error;
         }
 
         public static implicit operator bool(Result<TResult, TError1, TError2, TError3> result)
