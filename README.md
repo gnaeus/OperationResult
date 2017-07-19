@@ -128,6 +128,8 @@ public struct Result<TResult, TError1, TError2, ...>
     public bool IsError { get; }
     public bool IsSuccsess { get; }
 
+    public void Deconstruct(out TResult result, out object error);
+    
     public static implicit operator bool(Result<TResult, TError> result);
     public static implicit operator Result<TResult, TError>(TResult result);
 }
