@@ -8,7 +8,7 @@
   
   <PropertyGroup>
     <PackOnBuild>true</PackOnBuild>
-    <PackageVersion>0.1.4</PackageVersion>
+    <PackageVersion>0.1.5</PackageVersion>
     <PackageId>CSharp.OperationResult</PackageId>
     <Authors>Dmitry Panyushkin</Authors>
     <PackageIconUrl>https://raw.githubusercontent.com/gnaeus/OperationResult/master/OperationResult/icon_48x48.png</PackageIconUrl>
@@ -26,7 +26,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <None Remove="CSharp.OperationResult.nuspec" />
     <None Remove="icon_48x48.png" />
   </ItemGroup>
   
