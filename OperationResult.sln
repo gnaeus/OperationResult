@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperationResult", "OperationResult\OperationResult.csproj", "{BDA4CB62-00D6-4B41-B92D-DCC87B2C16D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OperationResult", "OperationResult\OperationResult.csproj", "{BDA4CB62-00D6-4B41-B92D-DCC87B2C16D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperationResult.Tests", "OperationResult.Tests\OperationResult.Tests.csproj", "{FD2552CC-7B2E-40DC-A0CE-B7946972D6F5}"
 EndProject
@@ -30,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {003185DB-8AA2-4A2D-94B4-ADA893CE6ADB}
 	EndGlobalSection
 EndGlobal

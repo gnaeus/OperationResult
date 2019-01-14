@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>CSharp.OperationResult</AssemblyName>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
@@ -19,11 +19,8 @@
     <Summary>Rust-style error handling for C#</Summary>
     <PackageTags>Rust Error Functional Result Status</PackageTags>
     <Description>Common types and helpers for represent result of some operation.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.2" />
-  </ItemGroup>
   
   <ItemGroup>
     <None Remove="icon_48x48.png" />
