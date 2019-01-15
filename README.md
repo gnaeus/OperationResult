@@ -274,19 +274,19 @@ public static class Helpers
 ## Benchmarks
 A performance comparsion with other error handling techniques
 
-                                                Method | SuccessRate |              Mean |        StdDev |  Gen 0 | Allocated |
------------------------------------------------------- |------------ |------------------ |-------------- |------- |---------- |
-                     `TResult Operation() + Exception` |          50 | 1,068,491.4165 ns | 2,754.8218 ns |      - |   10.4 kB |
-             **`Result<TResult, TError> Operation()`** |      **50** | **2,025.8556 ns** | **0.6701 ns** |  **-** |   **0 B** |
-                  `Tuple<TResult, TError> Operation()` |          50 |       957.9582 ns |     1.7159 ns | 0.9669 |    1.6 kB |
- `bool Operation(out TResult value, out TError error)` |          50 |       650.5804 ns |     0.1568 ns |      - |       0 B |
-                                                       |             |                   |               |        |           |
-                     `TResult Operation() + Exception` |          90 |   212,520.0360 ns |   529.5550 ns |      - |   2.08 kB |
-             **`Result<TResult, TError> Operation()`** |      **90** | **1,995.5200 ns** | **1.8644 ns** |  **-** |   **0 B** |
-                  `Tuple<TResult, TError> Operation()` |          90 |       815.9740 ns |     1.1819 ns | 0.9669 |    1.6 kB |
- `bool Operation(out TResult value, out TError error)` |          90 |       463.4321 ns |     0.4115 ns |      - |       0 B |
-                                                       |             |                   |               |        |           |
-                     `TResult Operation() + Exception` |          99 |    22,069.4842 ns |    52.4449 ns |      - |     208 B |
-             **`Result<TResult, TError> Operation()`** |      **99** | **1,989.6325 ns** | **2.8477 ns** |  **-** |   **0 B** |
-                  `Tuple<TResult, TError> Operation()` |          99 |       778.4539 ns |     1.3117 ns | 0.9669 |    1.6 kB |
- `bool Operation(out TResult value, out TError error)` |          99 |       430.4388 ns |     0.3498 ns |      - |       0 B |
+|                                                Method | SuccessRate |              Mean |        StdDev |  Gen 0 | Allocated |
+|------------------------------------------------------ |------------ |------------------ |-------------- |------- |---------- |
+|                     `TResult Operation() + Exception` |          50 | 1,068,491.4165 ns | 2,754.8218 ns |      - |   10.4 kB |
+|             **`Result<TResult, TError> Operation()`** |      **50** | **2,025.8556 ns** | **0.6701 ns** |  **-** |   **0 B** |
+|                  `Tuple<TResult, TError> Operation()` |          50 |       957.9582 ns |     1.7159 ns | 0.9669 |    1.6 kB |
+| `bool Operation(out TResult value, out TError error)` |          50 |       650.5804 ns |     0.1568 ns |      - |       0 B |
+|                                                       |             |                   |               |        |           |
+|                     `TResult Operation() + Exception` |          90 |   212,520.0360 ns |   529.5550 ns |      - |   2.08 kB |
+|             **`Result<TResult, TError> Operation()`** |      **90** | **1,995.5200 ns** | **1.8644 ns** |  **-** |   **0 B** |
+|                  `Tuple<TResult, TError> Operation()` |          90 |       815.9740 ns |     1.1819 ns | 0.9669 |    1.6 kB |
+| `bool Operation(out TResult value, out TError error)` |          90 |       463.4321 ns |     0.4115 ns |      - |       0 B |
+|                                                       |             |                   |               |        |           |
+|                     `TResult Operation() + Exception` |          99 |    22,069.4842 ns |    52.4449 ns |      - |     208 B |
+|             **`Result<TResult, TError> Operation()`** |      **99** | **1,989.6325 ns** | **2.8477 ns** |  **-** |   **0 B** |
+|                  `Tuple<TResult, TError> Operation()` |          99 |       778.4539 ns |     1.3117 ns | 0.9669 |    1.6 kB |
+| `bool Operation(out TResult value, out TError error)` |          99 |       430.4388 ns |     0.3498 ns |      - |       0 B |
