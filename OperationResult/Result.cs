@@ -15,9 +15,9 @@ namespace OperationResult
         public bool IsSuccess => _isSuccess;
         public bool IsError => !_isSuccess;
 
-        private Result(bool isSuccsess)
+        private Result(bool isSuccess)
         {
-            _isSuccess = isSuccsess;
+            _isSuccess = isSuccess;
             Value = default(TResult);
         }
 
