@@ -8,14 +8,14 @@
   
   <PropertyGroup>
     <PackOnBuild>true</PackOnBuild>
-    <PackageVersion>0.1.5</PackageVersion>
+    <PackageVersion>0.1.6</PackageVersion>
     <PackageId>CSharp.OperationResult</PackageId>
     <Authors>Dmitry Panyushkin</Authors>
     <PackageIconUrl>https://raw.githubusercontent.com/gnaeus/OperationResult/master/OperationResult/icon_48x48.png</PackageIconUrl>
     <PackageLicenseUrl>https://github.com/gnaeus/OperationResult/LICENSE</PackageLicenseUrl>
     <Owners>gnaeus</Owners>
     <PackageProjectUrl>https://github.com/gnaeus/OperationResult</PackageProjectUrl>
-    <PackageReleaseNotes>Updated to .NET Standard 2.0</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix typos</PackageReleaseNotes>
     <Summary>Rust-style error handling for C#</Summary>
     <PackageTags>Rust Error Functional Result Status</PackageTags>
     <Description>Common types and helpers for represent result of some operation.</Description>

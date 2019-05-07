@@ -130,8 +130,8 @@ public struct Result<TResult, TError1, TError2, ...>
 
     public void Deconstruct(out TResult result, out object error);
     
-    public static implicit operator bool(Result<TResult, TError> result);
-    public static implicit operator Result<TResult, TError>(TResult result);
+    public static implicit operator bool(Result<TResult, TError1, ...> result);
+    public static implicit operator Result<TResult, TError1, ...>(TResult result);
 }
 ```
 
@@ -237,7 +237,7 @@ public struct Status<TError1, TError2, ...>
     public TError GetError<TError>();
     public bool HasError<TError>();
 
-    public static implicit operator bool(Status<TError1, TError2> status);
+    public static implicit operator bool(Status<TError1, ...> status);
 }
 ```
 
