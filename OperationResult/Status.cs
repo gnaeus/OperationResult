@@ -12,9 +12,9 @@ namespace OperationResult
         public bool IsSuccess => _isSuccess;
         public bool IsError => !_isSuccess;
 
-        private Status(bool isSuccsess)
+        private Status(bool isSuccess)
         {
-            _isSuccess = isSuccsess;
+            _isSuccess = isSuccess;
         }
 
         public static implicit operator bool(Status status)
@@ -50,9 +50,9 @@ namespace OperationResult
         public bool IsSuccess => _isSuccess;
         public bool IsError => !_isSuccess;
 
-        private Status(bool isSuccsess)
+        private Status(bool isSuccess)
         {
-            _isSuccess = isSuccsess;
+            _isSuccess = isSuccess;
             Error = default(TError);
         }
 
@@ -97,9 +97,9 @@ namespace OperationResult
         public bool HasError<TError>() => Error is TError;
         public TError GetError<TError>() => (TError)Error;
 
-        private Status(bool IsSuccess)
+        private Status(bool isSuccess)
         {
-            _isSuccess = IsSuccess;
+            _isSuccess = isSuccess;
             Error = null;
         }
 
@@ -151,9 +151,9 @@ namespace OperationResult
         public bool HasError<TError>() => Error is TError;
         public TError GetError<TError>() => (TError)Error;
 
-        private Status(bool IsSuccess)
+        private Status(bool isSuccess)
         {
-            _isSuccess = IsSuccess;
+            _isSuccess = isSuccess;
             Error = null;
         }
 

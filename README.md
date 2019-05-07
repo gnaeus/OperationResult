@@ -60,7 +60,7 @@ public struct Result<TResult>
     public readonly TResult Value;
 
     public bool IsError { get; }
-    public bool IsSuccsess { get; }
+    public bool IsSuccess { get; }
 
     public static implicit operator bool(Result<TResult> result);
     public static implicit operator Result<TResult>(TResult result);
@@ -88,7 +88,7 @@ public struct Result<TResult, TError>
     public readonly TResult Value;
 
     public bool IsError { get; }
-    public bool IsSuccsess { get; }
+    public bool IsSuccess { get; }
 
     public void Deconstruct(out TResult result, out TError error);
 
@@ -126,7 +126,7 @@ public struct Result<TResult, TError1, TError2, ...>
     public readonly TResult Value;
 
     public bool IsError { get; }
-    public bool IsSuccsess { get; }
+    public bool IsSuccess { get; }
 
     public void Deconstruct(out TResult result, out object error);
     
@@ -176,7 +176,7 @@ Status of some operation without result when there is no `TError` type defined
 public struct Status
 {
     public bool IsError { get; }
-    public bool IsSuccsess { get; }
+    public bool IsSuccess { get; }
 
     public static implicit operator bool(Status status);
 }
@@ -202,7 +202,7 @@ public struct Status<TError>
     public readonly TError Error;
 
     public bool IsError { get; }
-    public bool IsSuccsess { get; }
+    public bool IsSuccess { get; }
 
     public static implicit operator bool(Status<TError> status);
 }
