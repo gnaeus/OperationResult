@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using static OperationResult.Helpers;
 
 namespace OperationResult.Tests
@@ -207,6 +208,84 @@ namespace OperationResult.Tests
 
             isSuccess = GetResultOrMultipleErrors(4);
             Assert.IsFalse(isSuccess);
+        }
+
+        [TestMethod]
+        public void TestResultEquals() 
+        {
+            Result<int, string> r = Ok(1);
+            var tests = new List<(bool, Result<int, string>)>() 
+            {
+                (true, Ok(1)),
+                (false, Ok(2)),
+                (false, Ok(0)),
+                (false, Error("")),
+                (false, Error<string>(null)),
+            };
+            foreach (var (w, result) in tests) 
+            {
+                Assert.AreEqual(w, r == result);
+            }
+
+            r = Error("E");
+            tests = new List<(bool, Result<int, string>)>() 
+            {
+                (false, Error("")),
+                (false, Error<string>(null)),
+                (true, Error("E")),
+                (false, Ok(1)),
+                (false, Ok(0)),
+            };
+            foreach (var (w, result) in tests) 
+            {
+                Assert.AreEqual(w, r == result);
+            }
+
+            r = Error<string>(null);
+            tests = new List<(bool, Result<int, string>)>() 
+            {
+                (false, Error("")),
+                (true, Error<string>(null)),
+                (false, Error("E")),
+                (false, Ok(1)),
+                (false, Ok(0)),
+            };
+            foreach (var (w, result) in tests) 
+            {
+                Assert.AreEqual(w, r == result);
+            }
+        }
+
+        [TestMethod]
+        public void TestResultEquals2() 
+        {
+            Result<string, string> r = Ok("1");
+            var tests = new List<(bool, Result<string, string>)>() 
+            {
+                (true, Ok("1")),
+                (false, Ok("2")),
+                (false, Ok<string>(null)),
+                (false, Error("")),
+                (false, Error<string>(null)),
+            };
+            foreach (var (w, result) in tests) 
+            {
+                Assert.AreEqual(w, r == result);
+            }
+
+            r = Ok<string>(null);
+            tests = new List<(bool, Result<string, string>)>() 
+            {
+                (false, Ok("1")),
+                (false, Ok("2")),
+                (true, Ok<string>(null)),
+                (false, Error("")),
+                (false, Error<string>(null)),
+            };
+            foreach (var (w, result) in tests) 
+            {
+                Assert.AreEqual(w, r == result);
+            }
         }
     }
 }

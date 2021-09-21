@@ -1,11 +1,12 @@
-﻿using OperationResult.Tags;
+﻿using System;
+using OperationResult.Tags;
 
 namespace OperationResult
 {
     /// <summary>
     /// Status of operation (without Value and Error fields)
     /// </summary>
-    public struct Status
+    public struct Status : IEquatable<Status>
     {
         private readonly bool _isSuccess;
 
@@ -35,13 +36,42 @@ namespace OperationResult
         {
             return ErrorStatus;
         }
+
+        public static bool operator ==(Status r1, Status r2) 
+        {
+            return r1._isSuccess == r2._isSuccess;
+        }
+
+        public static bool operator !=(Status r1, Status r2) 
+        {
+            return !(r1 == r2);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.IsError.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Status t) 
+            {
+                return this == t;
+            }
+            return false;
+        }
+
+        public bool Equals(Status other)
+        {
+            return this == other;
+        }
     }
 
     /// <summary>
     /// Status of operation (without Value but with Error field)
     /// </summary>
     /// <typeparam name="TError">Type of Error field</typeparam>
-    public struct Status<TError>
+    public struct Status<TError> : IEquatable<Status<TError>>
     {
         private readonly bool _isSuccess;
 
@@ -78,6 +108,35 @@ namespace OperationResult
         {
             return new Status<TError>(tag.Error);
         }
+
+        public static bool operator ==(Status<TError> r1, Status<TError> r2) 
+        {
+            return Helpers.Equals((r1._isSuccess, r1.Error, 1), (r2._isSuccess, r2.Error, 1));
+        }
+
+        public static bool operator !=(Status<TError> r1, Status<TError> r2) 
+        {
+            return !(r1 == r2);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.IsError ? this.Error.GetHashCode() : this.IsError.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Status<TError> t) 
+            {
+                return this == t;
+            }
+            return false;
+        }
+
+        public bool Equals(Status<TError> other)
+        {
+            return this == other;
+        }
     }
 
     /// <summary>
@@ -85,7 +144,7 @@ namespace OperationResult
     /// </summary>
     /// <typeparam name="TError1">Type of first Error</typeparam>
     /// <typeparam name="TError2">Type of second Error</typeparam>
-    public struct Status<TError1, TError2>
+    public struct Status<TError1, TError2> : IEquatable<Status<TError1, TError2>>
     {
         private readonly bool _isSuccess;
 
@@ -129,6 +188,35 @@ namespace OperationResult
         public static implicit operator Status<TError1, TError2>(ErrorTag<TError2> tag)
         {
             return new Status<TError1, TError2>(tag.Error);
+        }
+
+        public static bool operator ==(Status<TError1, TError2> r1, Status<TError1, TError2> r2) 
+        {
+            return Helpers.Equals((r1._isSuccess, r1.Error, 1), (r2._isSuccess, r2.Error, 1));
+        }
+
+        public static bool operator !=(Status<TError1, TError2> r1, Status<TError1, TError2> r2) 
+        {
+            return !(r1 == r2);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.IsError ? this.Error.GetHashCode() : this.IsError.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Status<TError1, TError2> t) 
+            {
+                return this == t;
+            }
+            return false;
+        }
+
+        public bool Equals(Status<TError1, TError2> other)
+        {
+            return this == other;
         }
     }
 
@@ -188,6 +276,35 @@ namespace OperationResult
         public static implicit operator Status<TError1, TError2, TError3>(ErrorTag<TError3> tag)
         {
             return new Status<TError1, TError2, TError3>(tag.Error);
+        }
+
+        public static bool operator ==(Status<TError1, TError2, TError3> r1, Status<TError1, TError2, TError3> r2) 
+        {
+            return Helpers.Equals((r1._isSuccess, r1.Error, 1), (r2._isSuccess, r2.Error, 1));
+        }
+
+        public static bool operator !=(Status<TError1, TError2, TError3> r1, Status<TError1, TError2, TError3> r2) 
+        {
+            return !(r1 == r2);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.IsError ? this.Error.GetHashCode() : this.IsError.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Status<TError1, TError2, TError3> t) 
+            {
+                return this == t;
+            }
+            return false;
+        }
+
+        public bool Equals(Status<TError1, TError2, TError3> other)
+        {
+            return this == other;
         }
     }
 }
