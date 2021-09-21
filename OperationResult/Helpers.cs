@@ -39,5 +39,26 @@ namespace OperationResult
         {
             return new ErrorTag<TError>(error);
         }
+
+        internal static bool Equals<V1, V2>((bool, V1, V2) r1, (bool, V1, V2) r2)
+        {
+            if (r1.Item1 != r2.Item1)
+            {
+                return false;
+            }
+            if (r1.Item1) 
+            {
+                if (r1.Item2 == null)
+                {
+                    return r2.Item2 == null;
+                }
+                return r1.Item2.Equals(r2.Item2);
+            }
+            if (r1.Item3 == null)
+            {
+                return r2.Item3 == null;
+            }
+            return r1.Item3.Equals(r2.Item3);
+        }
     }
 }

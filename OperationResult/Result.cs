@@ -1,4 +1,5 @@
-﻿using OperationResult.Tags;
+﻿using System;
+using OperationResult.Tags;
 
 namespace OperationResult
 {
@@ -6,7 +7,7 @@ namespace OperationResult
     /// Result of operation (without Error field)
     /// </summary>
     /// <typeparam name="TResult">Type of Value field</typeparam>
-    public struct Result<TResult>
+    public struct Result<TResult> : IEquatable<Result<TResult>>
     {
         private readonly bool _isSuccess;
 
@@ -48,6 +49,35 @@ namespace OperationResult
         {
             return ErrorResult;
         }
+
+        public static bool operator ==(Result<TResult> r1, Result<TResult> r2) 
+        {
+            return Helpers.Equals((r1._isSuccess, r1.Value, 1), (r2._isSuccess, r2.Value, 1));
+        }
+
+        public static bool operator !=(Result<TResult> r1, Result<TResult> r2) 
+        {
+            return !(r1 == r2);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.IsSuccess ? this.Value.GetHashCode() : this.IsSuccess.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Result<TResult> t) 
+            {
+                return this == t;
+            }
+            return false;
+        }
+
+        public bool Equals(Result<TResult> other)
+        {
+            return this == other;
+        }
     }
 
     /// <summary>
@@ -55,7 +85,7 @@ namespace OperationResult
     /// </summary>
     /// <typeparam name="TResult">Type of Value field</typeparam>
     /// <typeparam name="TError">Type of Error field</typeparam>
-    public struct Result<TResult, TError>
+    public struct Result<TResult, TError> : IEquatable<Result<TResult, TError>>
     {
         private readonly bool _isSuccess;
 
@@ -104,6 +134,35 @@ namespace OperationResult
         {
             return new Result<TResult, TError>(tag.Error);
         }
+
+        public static bool operator ==(Result<TResult, TError> r1, Result<TResult, TError> r2) 
+        {
+            return Helpers.Equals((r1._isSuccess, r1.Value, r1.Error), (r2._isSuccess, r2.Value, r2.Error));
+        }
+
+        public static bool operator !=(Result<TResult, TError> r1, Result<TResult, TError> r2) 
+        {
+            return !(r1 == r2);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.IsSuccess ? this.Value.GetHashCode() : this.IsSuccess.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Result<TResult, TError> t) 
+            {
+                return this == t;
+            }
+            return false;
+        }
+
+        public bool Equals(Result<TResult, TError> other)
+        {
+            return this == other;
+        }
     }
 
     /// <summary>
@@ -112,7 +171,7 @@ namespace OperationResult
     /// <typeparam name="TResult">Type of Value field</typeparam>
     /// <typeparam name="TError1">Type of first Error</typeparam>
     /// <typeparam name="TError2">Type of second Error</typeparam>
-    public struct Result<TResult, TError1, TError2>
+    public struct Result<TResult, TError1, TError2>: IEquatable<Result<TResult, TError1, TError2>>
     {
         private readonly bool _isSuccess;
 
@@ -169,6 +228,35 @@ namespace OperationResult
         {
             return new Result<TResult, TError1, TError2>(tag.Error);
         }
+
+        public static bool operator ==(Result<TResult, TError1, TError2> r1, Result<TResult, TError1, TError2> r2) 
+        {
+            return Helpers.Equals((r1._isSuccess, r1.Value, r2.Error), (r2._isSuccess, r2.Value, r2.Error));
+        }
+
+        public static bool operator !=(Result<TResult, TError1, TError2> r1, Result<TResult, TError1, TError2> r2) 
+        {
+            return !(r1 == r2);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.IsSuccess ? this.Value.GetHashCode() : this.IsSuccess.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Result<TResult, TError1, TError2> t) 
+            {
+                return this == t;
+            }
+            return false;
+        }
+
+        public bool Equals(Result<TResult, TError1, TError2> other)
+        {
+            return this == other;
+        }
     }
 
     /// <summary>
@@ -178,7 +266,7 @@ namespace OperationResult
     /// <typeparam name="TError1">Type of first Error</typeparam>
     /// <typeparam name="TError2">Type of second Error</typeparam>
     /// <typeparam name="TError3">Type of third Error</typeparam>
-    public struct Result<TResult, TError1, TError2, TError3>
+    public struct Result<TResult, TError1, TError2, TError3> : IEquatable<Result<TResult, TError1, TError2, TError3>>
     {
         private readonly bool _isSuccess;
 
@@ -239,6 +327,35 @@ namespace OperationResult
         public static implicit operator Result<TResult, TError1, TError2, TError3>(ErrorTag<TError3> tag)
         {
             return new Result<TResult, TError1, TError2, TError3>(tag.Error);
+        }
+
+        public static bool operator ==(Result<TResult, TError1, TError2, TError3> r1, Result<TResult, TError1, TError2, TError3> r2) 
+        {
+            return Helpers.Equals((r1._isSuccess, r1.Value, r2.Error), (r2._isSuccess, r2.Value, r2.Error));
+        }
+
+        public static bool operator !=(Result<TResult, TError1, TError2, TError3> r1, Result<TResult, TError1, TError2, TError3> r2) 
+        {
+            return !(r1 == r2);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.IsSuccess ? this.Value.GetHashCode() : this.IsSuccess.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Result<TResult, TError1, TError2> t) 
+            {
+                return this == t;
+            }
+            return false;
+        }
+
+        public bool Equals(Result<TResult, TError1, TError2, TError3> other)
+        {
+            return this == other;
         }
     }
 }
